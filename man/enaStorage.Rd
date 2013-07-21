@@ -1,26 +1,22 @@
 \name{enaStorage}
 \alias{enaStorage}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
-Storage analyses of ecological networks.
+  Storage analyses of ecological networks.
 }
 \description{
-Calculates statistics of the storage component in an ecological network.
+  Calculates storage-based Ecological Network Analyses.
 }
 \usage{
-enaStorage(x = "network object", balance.override = FALSE)
+enaStorage(x, balance.override = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
-%%     ~~Describe \code{x} here~~
-A network object.  This This includes all weighted flows into and out of
+    A network object.  This This includes all weighted flows into and out of
     each vertex as well as the amount of energy--matter stored at each vertex.   
-}
+  }
   \item{balance.override}{
-    %%     ~~Describe \code{balance.override} here~~
-    A logical variable.  If FALSE, the functions checks to make sure the
+    LOGICAL: should an imbalanced model be analyzed?  
+    If FALSE, the functions checks to make sure the
     network model provided is at steady-state.  If TRUE, then the
     function will run without ensuring that the model meets the
     steady-state assumption.
@@ -28,28 +24,31 @@ A network object.  This This includes all weighted flows into and out of
 }
 
 \value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-   \item{C}{output oriented Jacobian community matrix}
-  \item{CP}{input oriented Jacobian community matrix}
+  \item{X}{The storage values themselves.}
+  \item{C}{output or donor-storage normalized output-oriented direct flow
+  intensity matrix (Jacobian community matrix)}
   \item{S}{dimensionalized integral output community matrix}
-  \item{SP}{dimensionalized integral input community matrix}
   \item{Q}{integral output storage matrix - non-dimensional}
+  \item{CP}{input or recipient-storage normalized oriented flow intensity matrix (Jacobian community matrix)}
+  \item{SP}{dimensionalized integral input community matrix}
   \item{QP}{integral input storage matrix - non-dimensional}
   \item{dt}{selected time step to create P, PP, Q and QP - smallest whole number to make diag(C) nonnegative}
-  \item{ns}{vector of the storage based whole system network
-    statistics.  These include total system storgae(TSS), storage
-    cycling index (CIS), storage output network amplification (NAS),
-    storage output network amplification (NASP), input ratio of indirect
-    ot direct storage intensities (IDS.i), ouput ratio of indirect to
-    direct storage intensities (IDS.o), realized ration of indirect to
-    direct storage (IDS.r), output network homogenization (HMG.S.o),
-    input network homogenization (HMG.S.i), dominant eigenvalue of P
-    (lam1P), ratio of first and second eigenvalues of P (rhoP), dominant
-    eigenvalue of PP (lam1PP), ratio of first and second eigenvalues of
-    P (rhoPP), and network storage aggradation (AGG.S)}
-%% ...
+  \item{ns}{vector of the storage based whole system network statistics.
+    These statistics include total system storage (TSS), storage cycling
+    index (CIS), Boundary storage intensity (BSI), Direct storage
+    intensity (DSI), Indirect storage intensity (ISI), realized ratio of
+    indirect-to-direct storage (ID.S), unit input-oriented ratio of
+    indirect-to-direct storage intensities (IDS.I), unit output ratio of
+    indirect-to-direct storage intensities (IDS.O), input-oriented
+    storage-based network homogenization (HMG.S.I), output-oriented
+    storage-based network homogenization (HMG.S.O), input-oriented
+    storage-based network amplification (AMP.S.I), output-oriented
+    storage-based network amplification (AMP.S.O), Storage from Boundary
+    flow (mode0.S), storage from internal first passage flow (mode1.S),
+    storage from cycled flow (mode2.S), dissipative equivalent to
+    mode1.S (mode3.S), dissipative equivalent to mode0.S (mode4.S).}
 }
+
 \references{
 
   Matis, J. H., Patten, B. C. 1981. Environ analysis of linear compartmental systems:
@@ -58,6 +57,9 @@ A network object.  This This includes all weighted flows into and out of
   
   Fath, B. D., Patten, B. C. 1999.  Review of the foundations of network
   enviorn analysis.  Ecosystems 2:167-179.
+
+  Fath, B. D. Patten, B. C., Choi, J. 2001.  Compementarity of
+  ecological goal functions.   Journal of Theoretical Biology 208: 493-506.
 
   Fath, B. D., Borrett, S. R. 2006. A MATLAB function for Network Environ
   Analysis.  Environmental Modelling & Software 21:375-405
@@ -69,11 +71,9 @@ A network object.  This This includes all weighted flows into and out of
   Stuart R. Borrett (borretts@uncw.edu)
 
 }
-\note{
-  %%  ~~further notes~~
-  Note that matrices returned are oriented from column to row, which is
-  consistant with previous Environ Analysis works.
-}
+
+% \note{
+% }
 
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 %% ~~objects to See Also as \code{\link{help}}, ~~~

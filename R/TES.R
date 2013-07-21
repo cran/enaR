@@ -4,7 +4,8 @@
 #
 # Borrett | July 7, 2012
 # ---------------------------------------------------
-TES <- function(x='network object',balance.override=FALSE){
+
+TES <- function(x,balance.override=FALSE){
 
                                         #Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
@@ -14,8 +15,12 @@ TES <- function(x='network object',balance.override=FALSE){
     if (any(list.network.attributes(x) == 'balanced') == FALSE){x%n%'balanced' = ssCheck(x)}
     if (x%n%'balanced' == FALSE){warning('Model is not balanced'); stop}
   }
-
+                                        #
+  oo <- get.orient() #original orientation
+  if (oo == 'school'){oo <- 'internal'}
+  set.orient('internal')
   S <- enaStorage(x)
+  set.orient(oo)
   input <- unpack(x)$z   # get data input elements
   output <- unpack(x)$y  # get data output elements
 
@@ -33,6 +38,3 @@ TES <- function(x='network object',balance.override=FALSE){
   
   return(list("realized.input"=realized.input,"realized.output"=realized.output,"unit.input"=unit.input,"unit.output"=unit.output))
 }
-
-## SRB 7/9/2012 -- something seems off abotu the unit.input TES
-

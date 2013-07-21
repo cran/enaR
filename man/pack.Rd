@@ -1,68 +1,50 @@
 \name{pack}
 \alias{pack}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-%%  ~~function to do ... ~~
-Compile network information into a network class.
+  Compile network information into a network class.
 }
 \description{
-This function provides a flexible framework for importing flow network
-information into a network class object for analyses.
+  This function provides a flexible framework for importing flow network
+  information into a network class object for analyses.
 }
 \usage{
-pack(flow,input,export=0,respiration=0,storage=0,living=TRUE,use.output=FALSE)
+pack(flow,input=NA,output=NA,export=NA,respiration=NA,storage=NA,living=NA)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{flow}{
-%%     ~~Describe \code{x} here~~
-The flow matrix.
-}
+    The flow matrix.
+  }
   \item{input}{
-%%     ~~Describe \code{zero.na} here~~
-The inputs into the system.
-}
+    The inputs into the system.
+  }
+  \item{output}{
+    The outputs from the system.
+  }
   \item{export}{
-%%     ~~Describe \code{zero.na} here~~
-The exports from the system. If zero, then exports are set to
-zero. Use when exports are zero but respiration values are non-zero.
-}
+    The exports from the system. 
+  }
   \item{respiration}{
-%%     ~~Describe \code{zero.na} here~~
-The quantities respired from the system. If zero, then respiration is
-set to zero. See export argument above.
-}
+    The quantities respired from the system. 
+  }
   \item{storage}{
-%%     ~~Describe \code{zero.na} here~~
-The quantities stored in compartments within the system. Can be set to
-zero.
-}
-\item{living}{
-    %%     ~~Describe \code{zero.na} here~~
-    Either a logical vector with length equal to the number of nodes or
-    a TRUE = all nodes living or FALSE = all nodes dead.
-}
-\item{use.output}{
-    %%     ~~Describe \code{zero.na} here~~
-LOGICAL: if TRUE, respiration and exports are set to NA.
-}
+    The quantities stored in compartments within the system. 
+  }
+  \item{living}{
+    A logical vector indicating whether a node is either 'living' (=
+    TRUE) or 'dead' (=FALSE).
+  }
 }
 
 \value{
-Returns a network object for the input model.
+  Returns a network object for the supplied model.
 }
 
 \author{
-%%  ~~who you are~~
 Matthew K. Lau (mkl48@nau.edu)
 Stuart R. Borrett (borretts@uncw.edu)
 }
 
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 \code{\link{unpack}}
 }
 

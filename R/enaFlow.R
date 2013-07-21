@@ -4,9 +4,9 @@
 # 
 # M. Lau | July 2011
 # ---------------------------------------------------
-enaFlow <-
-function(x='network object',zero.na=TRUE,balance.override=FALSE){
 
+enaFlow <- function(x,zero.na=TRUE,balance.override=FALSE){
+  
                                         #Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
 
@@ -63,34 +63,46 @@ function(x='network object',zero.na=TRUE,balance.override=FALSE){
   TSTc <- sum((dN-p)/dN *T)
   FCI <- TSTc/TST
   
-                                          # non-locality (realized)
+                                        # non-locality (realized)
   direct <- sum(G %*% input)
   indirect <- sum((N - I - G) %*% input)
-  id <- indirect/direct
+  ID.F <- indirect/direct
   BFI <- Boundary/TST
   DFI <- sum(G %*% input) / TST
   IFI <- indirect/TST
                                         # non-locality (idealized)
-  id.O <- sum(N-I-G)/sum(G)
-  id.I <- sum(NP-I-GP)/sum(GP)
+  ID.F.O <- sum(N-I-G)/sum(G)
+  ID.F.I <- sum(NP-I-GP)/sum(GP)
                                         # HMG
   HMG.O <- ( sd(as.vector(G)) / mean(G) ) / ( sd(as.vector(N)) / mean(N) )
   HMG.I <- ( sd(as.vector(GP)) / mean(GP) ) / ( sd(as.vector(NP)) / mean(NP) )
                                         # Amplification
-  AMP.strong.O <- length(which( (N - diag(diag(N))) > 1))
-  AMP.strong.I <- length(which( (NP - diag(diag(NP))) > 1))
+  AMP.O <- length(which( (N - diag(diag(N))) > 1))
+  AMP.I <- length(which( (NP - diag(diag(NP))) > 1))
                                         # MODE ANALYSIS
                                         # This is built from Fath's original MODE program
-  mode0 <- Boundary                     # boundary flow
-  mode1 <- sum(ginv(diag(diag(N))) %*% N %*% diag(input) - diag(as.vector(I%*%input))) # internal first passage flow
-  mode2 <- sum((diag(diag(N))-I) %*% ginv(diag(diag(N))) %*% N %*% diag(input))  # cycled flow
-  mode3 <- mode1                      # dissipative equivalent to mode 1
-  mode4 <- mode0                      # dissipative equivalent to mode 0
+  mode0.F <- Boundary                     # boundary flow
+  mode1.F <- sum(ginv(diag(diag(N))) %*% N %*% diag(input) - diag(as.vector(I%*%input))) # internal first passage flow
+  mode2.F <- sum((diag(diag(N))-I) %*% ginv(diag(diag(N))) %*% N %*% diag(input))  # cycled flow
+  mode3.F <- mode1.F                      # dissipative equivalent to mode 1
+  mode4.F <- mode0.F                    # dissipative equivalent to mode 0
+                                        #re-orientation
+  orient <- get.orient()
+  if (orient == 'rc'){
+    G <- t(G)
+    GP <- t(GP)
+    N <- t(N)
+    NP <- t(NP)
+  }else{}
+                                        #network statistics
+  ns <- cbind(Boundary,TST,TSTp,APL,FCI,
+              BFI,DFI,IFI,
+              ID.F,ID.F.I,ID.F.O,
+              HMG.I,HMG.O,
+              AMP.I,AMP.O,
+              mode0.F,mode1.F,mode2.F,mode3.F,mode4.F)
 
-  ns <- cbind(Boundary,TST,TSTp,APL,FCI,BFI,DFI,IFI, id,id.I,id.O,
-  HMG.I,HMG.O, AMP.strong.I,AMP.strong.O,
-  mode0,mode1,mode2,mode3,mode4)
-  
+                                        #output
   return(list('T'=T,'G'=G,'GP'=GP,'N'=N,'NP'=NP,'ns'=ns))
-
 }
+

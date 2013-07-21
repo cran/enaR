@@ -5,7 +5,7 @@
 # Borrett | July 4, 2012
 # -----------------------------------
 
-get.ns <- function(x='network object',balance.override=FALSE){
+get.ns <- function(x,balance.override=FALSE){
                                         #Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
 

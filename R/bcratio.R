@@ -6,11 +6,8 @@
 # S. Borrett | July 2011
 # ---------------------------------------------------
 bcratio <- function(x='matrix'){
-
   plus <- sum(sum(abs(x[x>0])))  # sum positive elements
   minus <- abs(sum(sum(abs(x[x<0]))))  # sum negative elements
   r <- plus/minus  # ratio of positive to negative elements
-  
   return(r)
-  
 }

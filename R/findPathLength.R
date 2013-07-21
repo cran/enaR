@@ -6,12 +6,17 @@
 # S. Borrett and M. Lau | July 2011
 # ---------------------------------------------------
 
-findPathLength <- function(x="network model",maxPath=100,plot.sw=FALSE){
+findPathLength <- function(x,maxPath=100,plot.sw=FALSE){
+
   if(ssCheck(x)=="FALSE"){x = balance(x)}  # ensure the models is balanced
 
+  oo <- get.orient() #original orientation
+  if (oo == 'school'){oo <- 'internal'}
+  set.orient('internal')
   F <- enaFlow(x)   # perform flow analysis
-  
-  TST <- F$ns[2];
+  set.orient(oo)
+                                        #
+  TST <- F$ns[2]
 
                                         # find Total Flow over each path length
   k <- 0:maxPath

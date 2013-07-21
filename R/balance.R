@@ -5,14 +5,19 @@
 # M. Lau | July 2011
 # ---------------------------------------------------
 balance <-
-function(x='network object',method=c('AVG2','AVG','IO','OI','I','O'),tol=5){
+  function(x,method=c('AVG2','AVG','IO','OI','I','O'),tol=5){
                                         #Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
   T <- as.extended(x) #convert to extended format
   n <- nrow(x%n%'flow')
                                         #checks
   check <- ssCheck(x,tol)
-  if (check){print('BALANCED',quote=FALSE);x%n%'balanced' = TRUE;return(x);stop}else{
+  if (check){
+    print('BALANCED',quote=FALSE);
+    x%n%'balanced' = TRUE;
+    return(x);
+    stop
+  }else{
     method <- method[1]
     print(method,quote= FALSE)
                                         #balancing
@@ -37,7 +42,7 @@ function(x='network object',method=c('AVG2','AVG','IO','OI','I','O'),tol=5){
     x%v%'respiration' <- T.bal[1:n,(n+2)]
     x%v%'storage' <- x%v%'storage'
     x%n%'balanced' <- TRUE
-    
+                                        #Orientation
     return(x)
   }
 

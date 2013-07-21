@@ -4,17 +4,17 @@
 # S. Borrett | July 2011
 # ------------------------------------
 
-structure.statistics <- function(A='matrix'){
+structure.statistics <- function(A='adjacency matrix'){
   if (class(A) != 'matrix'){warning('A is not a matrix class object')}
                                         # 
   n <- dim(A)[1] #number of nodes in A
   L <- sum(A)    #length(A[A!=0]) #number of direct connections in A
   C <- L/n^2 #connectivity of A
   LD <- L/n #link density (equivalent to n*C)
-                                        #  e=sort(eigen(A)$values) #sorted eigenvalues of A # -- matlab always sorts by magnitude (Mod)
   e <- eigen(A)$values
   aer <- round(abs(e),digits = 7)      # round eigenvalue magnitudes (remove numerical error)
   mlam1A <- length(which(aer == aer[1]))  # find multiplicity of dominant eigenvalue
+  ppr <- sum(mExp(A,200))/sum(mExp(A,199)) # pathway proliferation rate (Borrett & Patten 2003)
   lam1A <- abs(e[1])                   # dominant eigenvalue of A. Also termed spectral radius. This is 1) a measure of connectivity, 2) approximately equal to LD and 3) the rate of pathway proliferation
   d <- abs(lam1A-LD)                   # difference between dominant eigenvalue and link density
   
@@ -29,6 +29,6 @@ structure.statistics <- function(A='matrix'){
   no.scc <- sp1[1]
   no.scc.big <- sp1[2]
   pscc <- sp1[3]
-  sp <- cbind(n,L,C,LD,lam1A,mlam1A,lam2A,rho,R,d,no.scc,no.scc.big,pscc)  # list of structural statistics of interest
+  sp <- cbind(n,L,C,LD,ppr,lam1A,mlam1A,rho,R,d,no.scc,no.scc.big,pscc)  # list of structural statistics of interest
   return(sp)
 }

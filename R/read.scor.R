@@ -96,10 +96,10 @@ read.scor <- function(file,type=c('network','nea','list','edge.list'),from.file=
       exp[exports$vertex] <- exports$value
     }else if (any(is.na(exports)) == TRUE&any(is.na(respiration)) == FALSE){
       res[respiration$vertex] <- respiration$value
-      exp <- NA
+      exp <- rep(0,n)
     }else if (any(is.na(exports)) == FALSE&any(is.na(respiration)) == TRUE){
       exp[exports$vertex] <- exports$value
-      res <- NA
+      res <- rep(0,n)
     }
     stor <- numeric(n)
     stor[storage$vertex] <- storage$value

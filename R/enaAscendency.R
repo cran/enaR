@@ -5,7 +5,13 @@
 # 
 # D. Hines | December 2011
 # ---------------------------------------------------
+
 enaAscendency <- function(x='network object'){
+
+  if (any(is.na(x%v%'export'))|any(is.na(x%v%'respiration'))){
+    warning('Model is missing either export or respiration. Calculations may not be correct.')
+  }
+
 ######## set initial conditions for calculations #########
   T.ulan <- as.extended(x)
   N <- ncol(T.ulan) # set up N
@@ -80,8 +86,8 @@ enaAscendency <- function(x='network object'){
                                         #confirm ratios sum to 1
   ASC.OH.RSUM <- ASC.CAP + OH.CAP
   
-  ns <- cbind(AMI,ASC,OH,CAP,ASC.CAP,OH.CAP,ASC.OH.RSUM)
-
+  ns <- cbind(AMI,ASC,OH,CAP,ASC.CAP,OH.CAP)
+                                        #
   return(ns)
   
 }

@@ -8,11 +8,11 @@
 # M. Lau | July 2011
 # ------------------------------------
 
-ssCheck <- function(x='network object',tol=5,more=FALSE){
+ssCheck <- function(x,tol=5,more=FALSE,zero.na=TRUE){
                                         #Check for network class object
   if (class(x) != 'network'){warning('x is not a network class object')}
-  
   T <- as.extended(x) #convert to extended format
+  if (zero.na){T[is.na(T)] <- 0}
   n <- get.network.attribute(x,'n') #get the number of nodes
   Tin <- apply(T[,1:n],2,sum) #in throughflow
   Tout <- apply(T[1:n,],1,sum) #out throughflow

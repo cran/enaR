@@ -6,8 +6,7 @@
 ## r-help/2007-May/131330.html)
 ## ___________________________________________________
 
-mExp <- function(x, n){
-
+mExp <- function(x='matrix', n=2){
   if (n == 1) return(x)
   result <- diag(1, ncol(x))
   while (n > 0) {

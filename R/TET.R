@@ -4,7 +4,8 @@
 #
 # Borrett | July 7, 2012
 # ---------------------------------------------------
-TET <- function(x='network object',balance.override=FALSE){
+
+TET <- function(x,balance.override=FALSE){
 
                                         #Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
@@ -15,7 +16,11 @@ TET <- function(x='network object',balance.override=FALSE){
     if (x%n%'balanced' == FALSE){warning('Model is not balanced'); stop}
   }
 
-  E <- environ(x)
+  oo <- get.orient() #original orientation
+  if (oo == 'school'){oo <- 'internal'}
+  set.orient('internal')
+  E <- enaEnviron(x)
+  set.orient(oo)
   input <- unpack(x)$z   # get data input elements
   output <- unpack(x)$y  # get data output elements
 
@@ -35,5 +40,11 @@ TET <- function(x='network object',balance.override=FALSE){
     unit.output[i] = -sum(diag(E$output[[i]]))
   }
 
-  return(list("realized.input"=realized.input,"realized.output"=realized.output,"unit.input"=unit.input,"unit.output"=unit.output))
+  return(
+         list("realized.input"=realized.input,
+              "realized.output"=realized.output,
+              "unit.input"=unit.input,
+              "unit.output"=unit.output)
+         )
+
 }
