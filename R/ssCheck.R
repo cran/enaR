@@ -17,12 +17,11 @@ ssCheck <- function(x,tol=5,more=FALSE,zero.na=TRUE){
   Tin <- apply(T[,1:n],2,sum) #in throughflow
   Tout <- apply(T[1:n,],1,sum) #out throughflow
   d <- abs(Tin - Tout) # SSerror difference
-  pe <- (d / Tout)*100 # SSerror as percent of node throughflow
-
+  pe <- (d / Tout)*100 # SSerror as percent of total throughflow
+                                        #
   if(more==FALSE){
     return(all(pe < tol)) #returns a logical indicating that all node differences are less than tolerance (==TRUE)
-  }
-  if(more==TRUE){
+  }else{
     return(list("ss"=all(pe < tol),"Tin"=Tin,"Tout"=Tout,"perror"=pe))
   }  
 }

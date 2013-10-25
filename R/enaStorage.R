@@ -16,9 +16,8 @@ enaStorage <- function(x,balance.override=FALSE){
                                         #Check for balancing
     if (balance.override == TRUE){}else{
       if (any(list.network.attributes(x) == 'balanced') == FALSE){x%n%'balanced' <- ssCheck(x)}
-      if (x%n%'balanced' == FALSE){warning('Model is not balanced'); stop}
+      if (x%n%'balanced'){}else{stop('Model is not balanced')}
     }
-
                                         #unpack data from x
     F <- t(x%n%'flow') #flows
                                         #continue unpacking
