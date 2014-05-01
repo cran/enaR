@@ -5,16 +5,16 @@
 read.enam<- function(file="file path and name"){
                                         #I have assumed the file is formatted as an excel speadsheet.  
                                         #The data must be on the first sheet in the workbook.
-  x <- as.matrix(read.xlsx(file,sheetIndex=1,header=FALSE))
+  x <- as.matrix(read.xls(file,sheet=1,header=FALSE))
   mname <- as.character(x[1,1]); # Get Model ID 
   n <- as.numeric(as.character(x[2,2])) # number of nodes
   liv <- as.numeric(as.character(x[3,2])) # number of nodes
   a <- n+6+1 # ending row of flows matrix -- assumes Flows start on row 6 and Imports and Biomasses are at the end
   b <- n+2+2 # ending column of flows matrix -- assumes exports and respirations are at the end
   m <- x[6:a,3:b] # Matrix of Flows
-  m[is.na(m)] <- 0 # replace NAs with zeros  
   m <- apply(m,2,as.numeric)
   rownames(m) <- colnames(m) <- as.character(x[6:a,2]) # node names
+  m[is.na(m)] <- 0 # replace NAs with zeros  
   F <- m[1:n,1:n] # flow matrix
   imports <- m[(n+1),1:n]
   biomass <- as.numeric(unlist(m[(n+2),1:n]))

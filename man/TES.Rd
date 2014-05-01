@@ -46,5 +46,6 @@ David E. Hines (deh9951@uncw.edu)
 }
 \examples{
 data(troModels)
-TES(troModels[[6]])
+tes <- TES(troModels[[6]])
+tes
 }

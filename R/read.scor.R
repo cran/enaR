@@ -61,7 +61,7 @@ read.scor <- function(file,type=c('network','nea','list','edge.list'),from.file=
     resp <- as.numeric(sapply(resp,function(x) scifix(substr(x,5,nchar(x)))))
     respiration <- data.frame("vertex"=vertex.no,"value"=resp) # final storage data
     
-  } else {
+  }else{
     respiration <- NA
   }
   
@@ -110,9 +110,10 @@ read.scor <- function(file,type=c('network','nea','list','edge.list'),from.file=
       output <- exp
     }else{output <- exp + res} #Outputs = respiration + exports for nea data type
                                         #introduce variables into the network format
-    x <- pack(flow=flow.mat,input=input,export=exp,respiration=res,storage=stor,living=living)
+    x <- pack(flow=flow.mat,input=input,export=exp,respiration=res,output=output,storage=stor,living=living)
   }else if (type[[1]] == 'edge.list'){
-    x <- list('storage' = storage,'input' = inputs,'export' = exports,'respiration' = respiration,'flow' = flows)
+    x <- list('storage' = storage,'input' = inputs,'export' = exports,
+              'respiration' = respiration,'output'= output,'flow' = flows)
   }
   if (type[[1]] == 'nea'){
     x <- cbind(flow.mat,input,stor)
@@ -120,8 +121,8 @@ read.scor <- function(file,type=c('network','nea','list','edge.list'),from.file=
     colnames(x) <- c(colnames(flow.mat),'z','x')
     rownames(x) <- c(rownames(flow.mat),'y')
   }else if (type[[1]] == 'list') {
-    x <- list('flow' = flow.mat,'input' = inputs,'exports' = exp,'respiration' = res,'storage' = stor,'living'=living)
+    x <- list('flow' = flow.mat,'input' = inputs,'exports' = exp,'respiration' = res,
+              'output'= output,'storage' = stor,'living'=living)
   }
-
   return(x)
 }
