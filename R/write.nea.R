@@ -1,11 +1,11 @@
-# write.nea.R
-# INPUT = enaR network data object
-# Ouput = CSV formatted file with data arranged as expected input for NEA.m
-#
-# Borrett | July 15, 2013
-# ----------------------------------------
+#'' write.nea.R
+#' INPUT = enaR network data object
+#' Ouput = CSV formatted file with data arranged as expected input for NEA.m
+#'
+#' Borrett | July 15, 2013
+#' ----------------------------------------
 
-write.nea <- function(x, file.name='neaData.csv',sep=','){
+write.nea <- function(x, file.name,sep=','){
                                         # Check for network class
   if (class(x) != 'network'){warning('x is not a network class object')}
   U <- unpack(x)  # unpack data
