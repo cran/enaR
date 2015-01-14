@@ -3,7 +3,11 @@
 \alias{enaR}
 \docType{package}
 \title{
-  Tools for ecological network analysis (ena) in R.
+<<<<<<< HEAD
+  Tools for Ecological Network Analysis (ena) in R.
+=======
+  Tools for Ecological Network Analysis (ena)
+>>>>>>> master
 }
 \description{
   This package compiles functions for the analysis of ecological networks,
