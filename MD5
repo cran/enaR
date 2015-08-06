@@ -1,7 +1,8 @@
-edb67049f2f52f77e72c6d5e235ca4b9 *DESCRIPTION
+2a20748497c7ae8a6e925193cbc5b91c *DESCRIPTION
 32700e6b6b5d46cea7324ed0e25f9830 *NAMESPACE
 09b86b2ec0c74578b94493167040b7b8 *R/TES.R
 0f5430b6a987089ef25e63cf39cbb145 *R/TET.R
+b15fa12cd85b8f29a366a4fa83c7dd53 *R/as.bipartite.R
 93c6fa479044ac92d174ec5ce7249d46 *R/as.extended.R
 728bbdd6cdf9bfd51759de68be39ae00 *R/bal.R
 3173cf471bd9d2624da62f471ad7ad13 *R/balance.R
@@ -45,10 +46,11 @@ a297d20f63f41a72d9a9041e13a627eb *data/bgcModels.rda
 34c323bcd26522818733ff8bf5d39b80 *data/enaModels.rda
 e78ba7add2355c19b3be479e3e809c99 *data/oyster.rda
 560d5d0a88a58be21825086b54bccddd *data/troModels.rda
-27335d1269f4895410de456134799963 *inst/doc/enaR-vignette.pdf
+50a21c7b7469ba6c0a79e91432122b7e *inst/doc/enaR-vignette.pdf
 94de660a7509899ff858db31cd4934f1 *inst/doc/enaR-vignette.pdf.asis
 0dd3e277f276bbeb273e999379578e39 *man/TES.Rd
 142934a0e9fb9b8bce40a7fc0b22b60b *man/TET.Rd
+27bc48fb6ca26d833433fcc50b72f624 *man/as.bipartite.Rd
 8b869b01083c32c4283ef49d9abace07 *man/as.extended.Rd
 532963eac8a5e04f6f8a2e3726e79fa0 *man/bal.Rd
 12efd00245fa6b9c9b9cca94eed5de04 *man/balance.Rd
@@ -65,7 +67,7 @@ fd7d4549cf923aa2655312153c7c4067 *man/enaEnviron.Rd
 93dc9db60eedf66b45922980ea0e98ae *man/enaMTI.Rd
 bed2f2473fbf94b1c26e38e4caa7c245 *man/enaModelInfo.Rd
 62890e923a91527c2823b0522e007599 *man/enaModels.Rd
-cbef62f7e05608f3fed76d9d55466637 *man/enaR-package.Rd
+f3757595fd60fadfe4ce0566ba3fb84f *man/enaR-package.Rd
 1ffa1c949c65c9a8dc57bf185ebfc5aa *man/enaStorage.Rd
 a651ff0eb6b5ceb962ffbdc7f697069e *man/enaStructure.Rd
 e8dc5edea68bc336e2f1acbfa8dd5c21 *man/enaTroAgg.Rd
